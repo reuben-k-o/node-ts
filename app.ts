@@ -14,6 +14,9 @@ function add(num1: number | string, num2: number | string) {
   }
 }
 
+function printResult(resultObj: { val: number; timestamp: Date }) {
+  console.log(resultObj.val)
+}
 
 buttonEl.addEventListener('click', () => {
   const val1 = num1El.value;
@@ -21,6 +24,7 @@ buttonEl.addEventListener('click', () => {
   const resNumber = add(+val1, +val2)
   const resString = add(val1, val2)
   console.log(resNumber, resString)
+  printResult({ val: resNumber as number, timestamp: new Date() })
 })
 
 // console.log(add(1, 6));
