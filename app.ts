@@ -20,7 +20,7 @@ function add(num1: NumOrString, num2: NumOrString) {
     return +num1 + +num2;
   }
 }
-const numRes: number[] = []
+const numRes: Array<number> = [] //generic type
 const strRes: string[] = []
 
 
@@ -40,6 +40,12 @@ buttonEl.addEventListener('click', () => {
   console.log(numRes, strRes)
 })
 
-// console.log(add(1, 6));
+const myPromise = new Promise<string>((resolve, reject) => {
+  setTimeout(() => {
+    resolve('It worked! well')
+  }, 1000)
+})
 
-// console.log(add('1', '6'));
+myPromise.then((result) => {
+  console.log(result.split(' ')[1])
+})

@@ -13,7 +13,7 @@ function add(num1, num2) {
         return +num1 + +num2;
     }
 }
-const numRes = [];
+const numRes = []; //generic type
 const strRes = [];
 function printResult(resultObj) {
     console.log(resultObj.val);
@@ -29,5 +29,11 @@ buttonEl.addEventListener('click', () => {
     printResult({ val: resNumber, timestamp: new Date() });
     console.log(numRes, strRes);
 });
-// console.log(add(1, 6));
-// console.log(add('1', '6'));
+const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('It worked! well');
+    }, 1000);
+});
+myPromise.then((result) => {
+    console.log(result.split(' ')[1]);
+});
