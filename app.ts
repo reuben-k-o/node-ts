@@ -1,51 +1,10 @@
-const num1El = document.getElementById('num1') as HTMLInputElement;
-const num2El = document.getElementById('num2') as HTMLInputElement
-const buttonEl = document.querySelector('button')!
+import express from 'express'
 
-type NumOrString = number | string
-type Result = { val: number; timestamp: Date }
-
-interface ResultObj {
-  val: number;
-  timestamp: Date
-}
-
-function add(num1: NumOrString, num2: NumOrString) {
-  if (typeof num1 === 'number' && typeof num2 === 'number') {
-    return num1 + num2
-  } else if (typeof num1 === 'string' && typeof num2 === 'string') {
-    return num1 + ' ' + num2
-  } else {
-
-    return +num1 + +num2;
-  }
-}
-const numRes: Array<number> = [] //generic type
-const strRes: string[] = []
+import todoRoutes from './routes/todos'
 
 
-function printResult(resultObj: Result) {
-  console.log(resultObj.val)
-}
+const app = express()
 
-buttonEl.addEventListener('click', () => {
-  const val1 = num1El.value;
-  const val2 = num2El.value;
-  const resNumber = add(+val1, +val2)
-  numRes.push(resNumber as number)
-  const resString = add(val1, val2)
-  strRes.push(resString as string)
-  console.log(resNumber, resString)
-  printResult({ val: resNumber as number, timestamp: new Date() })
-  console.log(numRes, strRes)
-})
+app.use(todoRoutes)
 
-const myPromise = new Promise<string>((resolve, reject) => {
-  setTimeout(() => {
-    resolve('It worked! well')
-  }, 1000)
-})
-
-myPromise.then((result) => {
-  console.log(result.split(' ')[1])
-})
+app.listen(3000)
